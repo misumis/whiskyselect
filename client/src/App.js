@@ -6,18 +6,21 @@ import './App.css';
 import Home from './components/Home';
 import WhiskySubmission from './submission/WhiskySubmission';
 import DefaultLayout from './components/DefaultLayout';
+import NavBar from './components/NavBar';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Router>
-          <Switch>
-            <Route path="/" component={DefaultLayout}>
-              <Route path="" component={Home}/>
-              <Route path="submit" component={WhiskySubmission}/>
-            </Route>
-          </Switch>
+          <div>
+            <NavBar/>
+            <Switch>
+              <Route exact path="/" component={Home}/>
+              <Route exact path="/submit" component={WhiskySubmission}/>
+            </Switch>
+          </div>
+          
         </Router>
       </div>
     );
