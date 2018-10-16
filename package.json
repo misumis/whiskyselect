@@ -1,0 +1,31 @@
+{
+  "name": "whiskyselect",
+  "version": "1.0.0",
+  "description": "Web application using React Redux ExpressJs & MongoDB technologies",
+  "main": "server.js",
+  "scripts": {
+    "client-install": "cd client && npm install",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/misumis/whiskyselect.git"
+  },
+  "author": "Michal Nowak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/misumis/whiskyselect/issues"
+  },
+  "homepage": "https://github.com/misumis/whiskyselect#readme",
+  "dependencies": {
+    "concurrently": "^4.0.1",
+    "express": "^4.16.4",
+    "mongodb": "^3.1.8"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
