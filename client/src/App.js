@@ -21,7 +21,7 @@ class App extends Component {
               <NavBar/>
               <Switch>
                 <Route exact path="/" component={Home}/>
-                <Route exact path="/tags" component={TagsSubmission}/>
+                <Route exact path="/tag" component={TagsSubmission}/>
                 <Route exact path="/submit" component={WhiskySubmission}/>
                 <Route exact path="/whisky/:whiskyId" component={WhiskyDetails}/>
                 <Route exact path="/whisky/:whiskyId/edit" component={WhiskySubmission}/>

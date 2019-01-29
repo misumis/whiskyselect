@@ -8,6 +8,7 @@ export default class NavBar extends Component {
     <AppBar position='sticky' color="default">
         <Toolbar>
           <Typography style={{flex:1, textAlign:'left', textDecoration:'none'}} component={Link} to="/" color="secondary" >Whisky Select</Typography>
+          <Button component={Link} to="/tag">Add Tag</Button>
           <Button component={Link} to="/submit">Add Whisky</Button>
         </Toolbar>
       </AppBar>
