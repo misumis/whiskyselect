@@ -11,14 +11,16 @@ I use MAMP for starting local server.
 // Mock some data and create database
 > node database.js create
 
-// Starts server
+// Starts server-side
 > npm start
 
 // Go to client
 > cd client
+
 Open second terminal
-// install node modules
+
+// Install node modules
 > npm install
 
-// run client
+// Run client-side
 > npm start
