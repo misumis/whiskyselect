@@ -1,43 +1,49 @@
-import React, { Component } from 'react';
-import { Route, Link, BrowserRouter  as Router } from "react-router-dom";
-import {ListItem, Paper, Button, ListItemText, Grid,TextField, Typography, Toolbar, AppBar} from '@material-ui/core';
+import React, { Component } from 'react'
+import {ListItem, Paper, ListItemText, Grid, CircularProgress} from '@material-ui/core';
+import { Link } from "react-router-dom";
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { getWhisky } from "../store/actions/whisky";
 
-export default class Home extends Component {
-fetchWhisky = () => {
-    return fetch('/api/whisky', {
-        method:'GET',
-    })
-    .then(response => response.json())
-    }
-    constructor(){
-    super()
-    this.state={
-        whisky:[]
-    }
-    }
-    getWhiskyDatabase = () => {
-    this.fetchWhisky().then(resp => this.setState({whisky:resp}));
-    }
-    componentDidMount(){
-    this.getWhiskyDatabase();
-    }
+
+export class Home extends Component {
+  static propTypes = {
+    whisky: PropTypes.object.isRequired
+  }
+  static defaultProps = {
+    whisky: []
+  }
+
+  componentWillMount() {
+    this.props.getWhisky();
+  }
+
   render() {
     return (
-      <div>
-        {this.state.whisky.length?
-        <Grid container justify='center'>
-          <Grid xs={12} sm ={8} md={6} item>
-            <Paper square>
-              {this.state.whisky.map( product => (
-                <ListItem>
-                  <ListItemText primary={product.name} secondary={product.age + ` years old`}></ListItemText>
-                </ListItem>))
-              }
-            </Paper>
-          </Grid>
-        </Grid>
-        :null}
-      </div>
+      <Grid container justify='center'>
+           <Grid xs={12} sm ={8} md={6} item>
+           {this.props.whisky.fetching? <CircularProgress />:null}
+             <Paper square>
+               {this.props.whisky.data.map( product => (
+                 <ListItem key={product.id} component={Link} to={`whisky/${product.id}`} button>
+                   <ListItemText primary={product.name} secondary={product.age + ` years old`}></ListItemText>
+                 </ListItem>))
+               }
+             </Paper>
+           </Grid>
+         </Grid>
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  whisky: state.whisky,
+  snackbar: state.snackbar
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  getWhisky: () => dispatch(getWhisky()),
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
